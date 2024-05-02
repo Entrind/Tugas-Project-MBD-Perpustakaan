@@ -1,0 +1,100 @@
+B001	Pulang	9786020822129	2015	Tere Liye	Republika Penerbit
+B002	Hercule poirot & greenshore folly	9786020328973	2016	Agatha Christie	Gramedia Pustaka Utama
+B003	Guru Aini	9786022916628	2020	Andrea Hirata	Bentang Pustaka
+B004	Rindu	9786028997904	2014	Tere Liye	Republika Penerbit
+B005	Sirkus Pohon	9786022914099	2017	Andrea Hirata	Bentang Pustaka
+B006	Saksi Bisu	9786020387697	2018	Agatha Christie	Gramedia Pustaka Utama
+B007	Skill with People	9786020314136	2015	Leslie T. Giblin	Gramedia Pustaka Utama
+B008	Sherlock Holmes	9786020371849	2017	Sir Arthur Conan Doyle	Gramedia Pustaka Utama
+B009	Menuju Negeri Antah Berantah	9789792289961	2019	Agatha Christie	Gramedia Pustaka Utama
+B010	Revolusi Glukosa	9786231860033	2023	Jessie Inchauspe	Bentang Pustaka
+B011	Negeri 5 Menara	9786022914082	2019	Ahmad Fuadi	Bentang Pustaka
+B012	Lima Sekawan dan Misteri Kapal Hantu	9789792243152	2019	Enid Blyton	Gramedia Pustaka Utama
+B013	Bumi Manusia	9786020395133	2018	Pramoedya Ananta Toer	Gramedia Pustaka Utama
+B014	Anak Semua Bangsa	9786020395140	2018	Pramoedya Ananta Toer	Gramedia Pustaka Utama
+B015	Jejak Langkah	9786020395157	2018	Pramoedya Ananta Toer	Gramedia Pustaka Utama
+B016	Rumah Kaca	9786020395164	2018	Pramoedya Ananta Toer	Gramedia Pustaka Utama
+B017	Jejak Luka	9786020395171	2018	Pramoedya Ananta Toer	Gramedia Pustaka Utama
+B018	Laskar Pelangi	9786020395188	2018	Andrea Hirata	Bentang Pustaka
+B019	Sang Pemimpi	9786020395195	2018	Andrea Hirata	Bentang Pustaka
+B020	Mary Poppins	9789792243169	2019	P. L. Travers	Gramedia Pustaka Utama
+B021	Senyap	9786020395201	2018	Eka Kurniawan	Bentang Pustaka
+B022	Cantik Itu Luka	9786020395218	2018	Eka Kurniawan	Bentang Pustaka
+B023	Lelaki Harimau	9786020395225	2018	Eka Kurniawan	Bentang Pustaka
+B024	Babi Ngepet	9786020395232	2018	Eka Kurniawan	Bentang Pustaka
+B025	Hujan Bulan Juni	9786020395249	2018	Sapardi Djoko Damono	Bentang Pustaka
+B026	Aku	9786020395256	2018	Chairil Anwar	Bentang Pustaka
+B027	Layar Terkembang	9786020395263	2018	Sutan Takdir Alisjahbana	Bentang Pustaka
+B028	Robohnya Surau Kami	9786020395270	2018	A.A. Navis	Bentang Pustaka
+B029	Ronggeng Dukuh Paruk	9786020395287	2018	Ahmad Tohari	Bentang Pustaka
+B030	Anak Semua Bangsa	9786020395300	2018	Pramoedya Ananta Toer	Bentang Pustaka
+B031	Sejarah Perang Dunia	9786025119507	2020	Saut Pasaribu	Alexander Books
+B032	Sejarah Dunia Abad Ke-19	9786236496015	2022	James Freeman Clarke	Indoliterasi
+B033	Perahu Kertas	9789791227780	2009	Dee Lestari	Bentang Pustaka
+B034	Edensor	9789791227025	2007	Andrea Hirata	Bentang Pustaka
+B035	Dilan 1990	9786027870864	2016	Pidi Baiq	Pastel Books
+B036	Dear Nathan	9786026940148	2016	Pidi Baiq	Best Media
+B037	Ketika Cinta Bertasbih	9789793210841	2016	Habiburrahman El Shirazy	Gramedia Pustaka Utama 
+B038	London Love Story	9786027298972	2015	Tisa TS	Loveable
+B039	Gezz & Ann	9789797809638	2016	Tsana 	Gramedia Pustaka Utama
+B040	Rich Dad Poor Dad	9786020333175	2016	Robert Kiyosaki	Gramedia Pustaka Utama
+B041	Catatan Seorang Demonstran	9789793330334	2005	Soe Hok Gie	Pustaka LP3ES Indonesia
+B042	Bidadari Bidadari Surga	9789791102261	2008	Tere Liye	Republika Penerbit
+B043	5 cm	9789797591519	2005	Donny Dhirgantoro	Grasindo
+B044	Ronggeng Dukuh Paruk	9789792201963	2003	Ahmad Tohari	Gramedia Pustaka Utama
+B045	Aku Ini Binatang Jalang	9789794030523	2002	Chairil Anwar	Gramedia Pustaka Utama
+B046	Burung-Burung Manyar	9789794285282	2004	Y.B. Mangunwijaya	Djambatan
+B047	Supernova: Akar	9789799625724	2002	Dee Lestari	Truedee Books
+B048	Di Bawah Lindungan Ka'bah	9789794180631	1995	Hamka	Bulan Bintang
+B049	Rectoverso	9789799625748	2008	Dee Lestari	Goodfaith
+B050	Tenggelamnya Kapal Van Der Wijck	9789679370256	1987	Hamka	Pustaka Dini
+B051	The Naked Traveler	9789792439366	2007	Trinity	C Publishing
+B052	Padang Bulan	9786028811095	2010	Andrea Hirata	Bentang Pustaka
+B053	Ranah 3 Warna	9789792263251	2011	Ahmad Fuadi	Gramedia Pustaka Utama
+B054	Arus Balik	9789798659041	1995	Pramoedya Ananta Toer	Hasta Mitra
+B055	Jejak Langkah	9789799731258	2007	Pramoedya Ananta Toer	Lentera Dipantera
+B056	Rahasia Meede: Misteri Harta Karun VOC	9789791140997	2007	E.S. Ito	Hikmah
+B057	Rara Mendut: Sebuah Trilogi	9789792236170	2008	Y.B. Mangunwijaya	Gramedia Pustaka Utama
+B058	Negeri Para Bedebah	9789792285529	2012	Tere Liye	Gramedia Pustaka Utama
+B059	Muhammad: Lelaki Penggenggam Hujan	9789791227797	2010	Tasaro G.K.	Bentang Pustaka
+B060	Gajah Mada	9789796685585	2004	Langit Kresna Hariadi	Tiga Serangkai
+B061	Dari Ave Maria ke Jalan Lain ke Roma	9789794072189	1990	Idrus	Balai Pustaka
+B062	Badai Pasti Berlalu	9789796860012	1998	Marga T.	Gramedia Pustaka Utama
+B063	Bilangan Fu	9789799101228	2008	Ayu Utami	Kepustakaan Populer Gramedia
+B064	Partikel	9786028811743	2012	Dee Lestari	Gramedia Pustaka Utama
+B065	Lupus Kecil	9789794034620	1989	Hilman Hariwijaya	Gramedia Pustaka Utama
+B066	Senopati Pamungkas	9789792204254	2003	Arswendo Atmowiloto	Gramedia Pustaka Utama
+B067	Moga Bunda Disayang Allah	9789793210797	2007	Tere Liye	Republika Penerbit
+B068	Lupus: Sendal Jepit	9789794035948	1989	Hilman Hariwijaya	Gramedia Pustaka Utama
+B069	Seribu Kunang-Kunang di Manhattan	9789794613283	1999	Umar Kayam	Yayasan Obor Indonesia
+B070	Max Havelaar	9789021495811	1995	Multatuli	Querido
+B071	Bumi Cinta	9789793604350	2010	Habiburrahman El-Shirazy	Basmala
+B072	Merpati Tak Pernah Ingkar Janji	9789796553211	1999	Mira W.	Gramedia Pustaka Utama
+B073	Madre: Kumpulan Cerita	9786028811491	2011	Dee Lestari	Bentang Pustaka
+B074	Negeri Senja	9789799023964	2003	Seno Gumira Ajidarma	Kepustakaan Populer Gramedia
+B075	Namaku Hiroko	9789796555871	1986	Nh. Dini	Gramedia Pustaka Utama
+B076	Saksi Mata	9789793062167	2002	Seno Gumira Ajidarma	Yayasan Bentang Budaya
+B077	Sepotong Senja untuk Pacarku	9789796865000	2002	Seno Gumira Ajidarma	Gramedia Pustaka Utama
+B078	Perburuan	9789798659003	1994	Pramoedya Ananta Toer	Hasta Mitra
+B079	Dilarang Menyanyi di Kamar Mandi	9789798615191	1995	Seno Gumira Ajidarma	Subentra Citra Pustaka
+B080	Kamus besar bahasa Indonesia	9789794071823	2001	Pusat Bahasa	Pusat Bahasa
+B081	Sebuah Pertanyaan untuk Cinta	9789796551255	2003	Seno Gumira Ajidarma	Gramedia Pustaka Utama
+B082	Kau, Aku & Sepucuk Angpau Merah	9789792279139	2012	Tere Liye	Gramedia Pustaka Utama
+B083	Negeri van Oranje	9789791227582	2009	Wahyuningrat	Bentang Pustaka
+B084	Makhluk Manis dalam Bis	9789794031490	1987	Hilman Hariwijaya	Gramedia Pustaka Utama
+B085	Winter in Tokyo	9789792239836	2008	Ilana Tan	Gramedia Pustaka Utama
+B086	Burlian	9789791102681	2009	Tere Liye	Republika Penerbit
+B087	Rantau 1 Muara	9789792294736	2013	Ahmad Fuadi	Gramedia Pustaka Utama
+B088	Topi-topi Centil	9789794033166	2007	Hilman Hariwijaya	Gramedia Pustaka Utama
+B089	Puisi Mbeling	9789799100122	2004	Remy Sylado	Kepustakaan Populer Gramedia
+B090	Chairul Tanjung Si Anak Singkong	9789797096502	2012	Tjahja Gunawan Diredja	Penerbit Buku Kompas
+B091	Dimsum Terakhir	9789792220698	2006	Clara Ng	Gramedia Pustaka Utama
+B092	Refrain	9789797803629	2009	Winna Efendi	Gagas Media
+B093	Pukat	9789791102735	2010	Tere Liye	Republika Penerbit
+B094	9 Summers 10 Autumns	9789792267662	2011	Iwan Setyawan	Gramedia Pustaka Utama
+B095	Eliana	9786028987042	2011	Tere Liye	Republika Penerbit
+B096	Khotbah di Atas Bukit	9789791227377	2008	Kuntowijoyo	Bentang Pustaka
+B097	Sepatu Dahlan	9786029498240	2012	Khrisna Pabichara	Noura Books
+B098	Dari Penjara Ke Penjara Bagian Satu	9789799588821	2000	Tan Malaka	Teplok Press
+B099	Man Tiger	9781781688595	2015	Eka Kurniawan	Verso Books
+B100	Canting	9789792232493	2007	Arswendo Atmowiloto	Gramedia Pustaka Utama

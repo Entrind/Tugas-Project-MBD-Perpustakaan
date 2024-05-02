@@ -1,0 +1,15 @@
+PTG001	Ahmad Sumbul	812345678912	Jl. Pustaka Indah No. 123
+PTG002	Dean Gery	876543210046	Jl. Baca Sejahtera No. 45
+PTG003	Bella Wijaya	723456789023	Jl. Ilmu Makmur No. 456
+PTG004	Chrisanto Tan	634567890134	Jl. Buku Bahagia No. 789
+PTG005	Dewi Pustakawati	545678901245	Jl. Pengetahuan Sejahtera No. 101
+PTG006	Eko Literasi	456789012356	Jl. Pintar No. 202
+PTG007	Farah Quin	367890123467	Jl. Cerdas No. 303
+PTG008	Gunawan Alam	278901234578	Jl. Inspirasi No. 404
+PTG009	Hana Saskia	189012345689	Jl. Kajian No. 505
+PTG010	Irfan Pustaka	890123456790	Jl. Wawasan No. 606
+PTG011	Oscar Sastra	456789012356	Jl. Sumber Ilmu No. 333
+PTG012	Fatimah Rasyid	823456789023	Jl. Sastra Damai No. 234
+PTG013	Siti Puisi	977890123467	Jl. Sastra Sejahtera No. 678
+PTG014	Andre Pratama	988901234578	Jl. Makmur Indah No. 789
+PTG015	Maya Anggraeni	933456789023	Jl. Inspirasi Damai No. 234
