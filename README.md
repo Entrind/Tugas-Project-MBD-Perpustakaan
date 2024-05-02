@@ -18,13 +18,13 @@ Note
 
 Penginstalan library tersebut dapat dilakukan melalui command-line interface (CLI):
 
-    Instalasi PyQt5
+Instalasi PyQt5
 
-pip install PyQt5
+    pip install PyQt5
 
-    Instalasi mysql.connector
+Instalasi mysql.connector
 
-pip install mysql-connector-python
+    pip install mysql-connector-python
 
 Fungsi Program:
 
