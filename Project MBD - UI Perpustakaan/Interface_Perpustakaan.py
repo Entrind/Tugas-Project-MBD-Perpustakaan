@@ -191,6 +191,11 @@ class LibraryApp(QWidget):
             content_area.addWidget(message_label)
             content_area.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
+            # Message below search bar
+            message_label = QLabel("Ketiklah Judul Buku, Genre atau Nama Penulis dari Buku")
+            message_label.setAlignment(Qt.AlignCenter)
+            content_area.addWidget(message_label)
+
             # Search bar
             search_layout = QHBoxLayout()
             search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
@@ -228,7 +233,7 @@ class LibraryApp(QWidget):
             main_layout.addWidget(message_label)
 
             # Message below search bar
-            message_label = QLabel("Ketiklah Judul Buku atau Nama penulis dari Buku")
+            message_label = QLabel("Ketiklah Judul Buku, Genre atau Nama Penulis dari Buku")
             message_label.setAlignment(Qt.AlignTop)
             main_layout.addWidget(message_label)
 
@@ -299,6 +304,13 @@ class LibraryApp(QWidget):
         message_label.setAlignment(Qt.AlignLeft)
         content_area.addWidget(message_label)
         content_area.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
+
+        # Message below search bar
+        search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
+        message_label = QLabel("Ketiklah Nama Anggota, Judul Buku atau Tanggal Peminjaman")
+        message_label.setAlignment(Qt.AlignTop)
+        content_area.addWidget(message_label)
+        search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
         # Search bar
         search_layout = QHBoxLayout()
@@ -380,6 +392,11 @@ class LibraryApp(QWidget):
         message_label.setAlignment(Qt.AlignLeft)
         content_area.addWidget(message_label)
         content_area.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
+
+        # Message below search bar
+        message_label = QLabel("Ketiklah Nama Anggota, Judul Buku atau Tanggal Pengembalian")
+        message_label.setAlignment(Qt.AlignCenter)
+        content_area.addWidget(message_label)
 
         # Search bar
         search_layout = QHBoxLayout()
