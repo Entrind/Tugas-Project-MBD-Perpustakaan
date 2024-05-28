@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 import mysql.connector
+from loginpage import LoginScreen
 from dialogs import *
 
 class LibraryApp(QWidget):
@@ -38,7 +39,7 @@ class LibraryApp(QWidget):
             sys.exit(1)  # Exit the application if failed to connect to the database
 
         # Login screen
-        self.login_screen = self.create_login_screen()
+        self.login_screen = LoginScreen(self)
         self.stacked_widget.addWidget(self.login_screen)
 
         # Main app screen (initially hidden)
@@ -48,8 +49,7 @@ class LibraryApp(QWidget):
         }
         self.stacked_widget.addWidget(self.main_screens['guest'])
         self.stacked_widget.addWidget(self.main_screens['admin'])
-        
-        self.peminjaman_table = None
+
         #other screens
         self.peminjaman_screen = self.Peminjaman_buku_screen()
         self.pengembalian_screen = self.Pengembalian_buku_screen()
@@ -64,81 +64,6 @@ class LibraryApp(QWidget):
         self.customContextMenuRequested.connect(self.show_context_menu)
 
         self.show()
-
-    def create_login_screen(self):
-        login_screen = QWidget()
-        login_layout = QVBoxLayout(login_screen)
-        login_screen.setLayout(login_layout)
-
-        login_label = QLabel("LOGIN")
-        login_label.setFont(QFont('Helvetica', 18))
-        login_label.setAlignment(Qt.AlignCenter)
-        login_layout.addWidget(login_label)
-
-        login_input = QFont()
-        login_input.setPointSize(12)
-
-        username_label = QLabel('Username')
-        username_label.setFont(QFont('Helvetica', 10))
-        login_layout.addWidget(username_label)
-        self.username_edit = QLineEdit()
-        self.username_edit.setFont(login_input)
-
-        login_layout.addWidget(self.username_edit)
-
-        password_label = QLabel('Password')
-        password_label.setFont(QFont('Helvetica', 10))
-        login_layout.addWidget(password_label)
-        self.password_edit = QLineEdit()
-        self.password_edit.setEchoMode(QLineEdit.Password)  # Hide password characters
-        self.password_edit.setFont(login_input)
-        login_layout.addWidget(self.password_edit)
-
-        login_layout.addSpacerItem(QSpacerItem(0, 30, QSizePolicy.Ignored, QSizePolicy.Maximum))
-
-        login_button = QPushButton('Login (Admin)')
-        login_button.setFont(QFont('Helvetica', 8))
-
-        login_button.clicked.connect(self.handle_login_admin)
-        login_layout.addWidget(login_button)
-
-        login_layout.addSpacerItem(QSpacerItem(0, 30, QSizePolicy.Ignored, QSizePolicy.Maximum))
-
-        # Inside create_login_screen method
-        divider_layout = QHBoxLayout()  # Create a horizontal layout to hold the label and line
-        login_layout.addLayout(divider_layout)
-
-        # Add line
-        divider_line = QFrame()
-        divider_line.setFrameShape(QFrame.HLine)
-        divider_line.setFrameShadow(QFrame.Sunken)
-        divider_line.setStyleSheet("background-color: #9fa5b1;")  # Set black background color
-        divider_line.setLineWidth(2)  # Increase line width to make it more apparent
-        divider_layout.addWidget(divider_line)
-
-        # Add label
-        divider_label = QLabel("OR")
-        divider_label.setFont(QFont('Helvetica', 8))
-        divider_label.setAlignment(Qt.AlignCenter)
-        divider_layout.addWidget(divider_label)
-
-        # Add line
-        divider_line = QFrame()
-        divider_line.setFrameShape(QFrame.HLine)
-        divider_line.setFrameShadow(QFrame.Sunken)
-        divider_line.setStyleSheet("background-color: #9fa5b1;")  # Set black background color
-        divider_line.setLineWidth(2)  # Increase line width to make it more apparent
-        divider_layout.addWidget(divider_line)
-
-        login_layout.addSpacerItem(QSpacerItem(0, 30, QSizePolicy.Ignored, QSizePolicy.Maximum))
-
-        guest_button = QPushButton('Continue as Guest')
-        guest_button.setFont(QFont('Helvatica', 8))
-
-        guest_button.clicked.connect(self.handle_guest_login)
-        login_layout.addWidget(guest_button)
-
-        return login_screen
 
     def create_title_groupbox(self):
         title_groupbox = QGroupBox()
@@ -165,7 +90,6 @@ class LibraryApp(QWidget):
 
         # Define content_area
         content_area = QVBoxLayout()
-
         if admin:
             # Admin Main Screen
             admin_layout = QHBoxLayout()
@@ -191,8 +115,8 @@ class LibraryApp(QWidget):
             content_area.addWidget(message_label)
             content_area.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
-            # Message below search bar
-            message_label = QLabel("Ketiklah Judul Buku, Genre atau Nama Penulis dari Buku")
+            # Hint message above search bar
+            message_label = QLabel("Ketiklah Judul Buku, Genre, atau Nama penulis dari Buku")
             message_label.setAlignment(Qt.AlignCenter)
             content_area.addWidget(message_label)
 
@@ -227,13 +151,15 @@ class LibraryApp(QWidget):
 
         else:
             # Message above search bar
+            main_layout.addSpacerItem(QSpacerItem(25, 10, QSizePolicy.Ignored, QSizePolicy.Fixed))
             message_label = QLabel("Pencarian Buku Perpustakaan")
             message_label.setFont(QFont('Helvetica', 18))
             message_label.setAlignment(Qt.AlignTop)  # Align the message label to the top
             main_layout.addWidget(message_label)
+            main_layout.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
             # Message below search bar
-            message_label = QLabel("Ketiklah Judul Buku, Genre atau Nama Penulis dari Buku")
+            message_label = QLabel("Ketiklah Judul Buku, Genre, atau Nama penulis dari Buku")
             message_label.setAlignment(Qt.AlignTop)
             main_layout.addWidget(message_label)
 
@@ -305,18 +231,16 @@ class LibraryApp(QWidget):
         content_area.addWidget(message_label)
         content_area.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
-        # Message below search bar
-        search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
-        message_label = QLabel("Ketiklah Nama Anggota, Judul Buku atau Tanggal Peminjaman")
-        message_label.setAlignment(Qt.AlignTop)
+        # Hint message above search bar
+        message_label = QLabel("Ketiklah Judul Buku, Nama Anggota, atau Tanggal Peminjaman Buku")
+        message_label.setAlignment(Qt.AlignCenter)
         content_area.addWidget(message_label)
-        search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
         # Search bar
         search_layout = QHBoxLayout()
         search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
         search_input = QLineEdit()
-        search_input.setFont(QFont('Helvetica', 16))
+        search_input.setFont(QFont('Helvetica', 12))
         search_button = QPushButton("Search")
         search_button.clicked.connect(lambda: self.search_peminjaman(search_input.text(), self.peminjaman_table))
         search_layout.addWidget(search_input)
@@ -393,8 +317,8 @@ class LibraryApp(QWidget):
         content_area.addWidget(message_label)
         content_area.addSpacerItem(QSpacerItem(50, 25, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
-        # Message below search bar
-        message_label = QLabel("Ketiklah Nama Anggota, Judul Buku atau Tanggal Pengembalian")
+        # Hint message above search bar
+        message_label = QLabel("Ketiklah Judul Buku, Nama Anggota, atau Tanggal Pengembalian Buku")
         message_label.setAlignment(Qt.AlignCenter)
         content_area.addWidget(message_label)
 
@@ -402,7 +326,7 @@ class LibraryApp(QWidget):
         search_layout = QHBoxLayout()
         search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
         search_input = QLineEdit()
-        search_input.setFont(QFont('Helvetica', 16))
+        search_input.setFont(QFont('Helvetica', 12))
         search_button = QPushButton("Search")
         search_button.clicked.connect(lambda: self.search_pengembalian(search_input.text(), self.pengembalian_table))
         search_layout.addWidget(search_input)
@@ -521,6 +445,9 @@ class LibraryApp(QWidget):
                 }
                 QPushButton:hover {
                     background-color: #B5C0D0; /* Change to the accent color on hover */
+                }
+                QPushButton:pressed { 
+                    background-color: #566c8b; 
                 }
                 """
             )
