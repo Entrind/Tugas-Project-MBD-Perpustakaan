@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 
+
 class LoginScreen(QWidget):
     def __init__(self, app_reference, parent=None):
         super(LoginScreen, self).__init__(parent)
