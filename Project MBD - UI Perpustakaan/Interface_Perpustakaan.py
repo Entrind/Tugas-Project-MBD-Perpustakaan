@@ -1,10 +1,11 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QColor
 from PyQt5.QtCore import Qt
 import mysql.connector
 from loginpage import LoginScreen
 from dialogs import *
+
 
 class LibraryApp(QWidget):
     def __init__(self):
@@ -50,13 +51,14 @@ class LibraryApp(QWidget):
         self.stacked_widget.addWidget(self.main_screens['guest'])
         self.stacked_widget.addWidget(self.main_screens['admin'])
 
-        #other screens
+        # other screens
         self.peminjaman_screen = self.Peminjaman_buku_screen()
         self.pengembalian_screen = self.Pengembalian_buku_screen()
         self.stacked_widget.addWidget(self.peminjaman_screen)
         self.stacked_widget.addWidget(self.pengembalian_screen)
-        
+
         self.setFixedSize(650, 700)
+        self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
         self.stacked_widget.setCurrentIndex(0)  # Show login screen first
 
         # Create context menu
@@ -67,13 +69,14 @@ class LibraryApp(QWidget):
 
     def create_title_groupbox(self):
         title_groupbox = QGroupBox()
-        title_groupbox.setStyleSheet("QGroupBox { background-color: #E0E0E0; border: 2px solid #808080; }")
+        title_groupbox.setStyleSheet("QGroupBox { background-color: #A79277; border: 2px solid #808080; }")
         title_layout = QVBoxLayout()
         title_groupbox.setLayout(title_layout)
 
         message_label = QLabel("Sistem Manajemen Perpustakaan")
         message_label.setFont(QFont('Helvetica', 24))
         message_label.setAlignment(Qt.AlignCenter)  # Align center for title appearance
+        message_label.setStyleSheet("background-color: #A79277;")
         title_layout.addWidget(message_label)
 
         return title_groupbox
@@ -83,6 +86,7 @@ class LibraryApp(QWidget):
         main_screen = QWidget()
         main_layout = QVBoxLayout()
         main_screen.setLayout(main_layout)
+        main_screen.setStyleSheet("QWidget { background-color: #D1BB9E; }")
 
         # App Title
         title_groupbox = self.create_title_groupbox()
@@ -117,6 +121,7 @@ class LibraryApp(QWidget):
 
             # Hint message above search bar
             message_label = QLabel("Ketiklah Judul Buku, Genre, atau Nama penulis dari Buku")
+            message_label.setFont(QFont('Helvetica', 12))
             message_label.setAlignment(Qt.AlignCenter)
             content_area.addWidget(message_label)
 
@@ -124,9 +129,18 @@ class LibraryApp(QWidget):
             search_layout = QHBoxLayout()
             search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
             search_input = QLineEdit()
+            search_input.setStyleSheet("background-color: #ffffff;")
             search_input.setFont(QFont('Helvetica', 12))
             search_button = QPushButton("Search")
-            search_button.clicked.connect(lambda: self.search_books(search_input.text(), buku_table))  # Connect search button to search function
+            search_button.setStyleSheet("""
+                QPushButton {
+                    background-color: #FFFFFF;
+                }
+                QPushButton:hover {
+                    background-color: #E0EEF9; /* Change to the accent color on hover */
+                }""")
+            search_button.clicked.connect(lambda: self.search_books(search_input.text(), buku_table)
+                                          )  # Connect search button to search function
             search_layout.addWidget(search_input)
             search_layout.addWidget(search_button)
             search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
@@ -135,7 +149,7 @@ class LibraryApp(QWidget):
             # Table
             table_headers = ["ID", "Judul", "Genre", "Tahun Terbit", "Penulis", "Rak", "Status"]
             buku_table = self.create_table(table_headers)  # Create the table
-            buku_table.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)  
+            buku_table.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
             content_area.addWidget(buku_table)  # Add the table to the desired layout
 
@@ -145,7 +159,7 @@ class LibraryApp(QWidget):
             FROM Buku b
             JOIN Menyimpan s ON b.ID_Buku = s.ID_Buku
             JOIN Rak r ON s.Kode_Rak = r.Kode_Rak
-            ORDER BY ID_Buku;         
+            ORDER BY ID_Buku;
             '''
             self.populate_table(buku_table, buku_query)
 
@@ -160,6 +174,7 @@ class LibraryApp(QWidget):
 
             # Message below search bar
             message_label = QLabel("Ketiklah Judul Buku, Genre, atau Nama penulis dari Buku")
+            message_label.setFont(QFont('Helvetica', 12))
             message_label.setAlignment(Qt.AlignTop)
             main_layout.addWidget(message_label)
 
@@ -167,13 +182,22 @@ class LibraryApp(QWidget):
             search_layout = QHBoxLayout()
             search_input = QLineEdit()
             search_input.setFixedWidth(2500)
+            search_input.setStyleSheet("background-color: #ffffff;")
             search_input.setFont(QFont('Helvetica', 12))
             search_button = QPushButton("Search")
-            search_button.clicked.connect(lambda: self.search_books(search_input.text(), buku_table))
+            search_button.setStyleSheet("""
+                QPushButton {
+                    background-color: #FFFFFF;
+                }
+                QPushButton:hover {
+                    background-color: #E0EEF9; /* Change to the accent color on hover */
+                }""")
+            search_button.clicked.connect(lambda: self.search_books(search_input.text(), buku_table)
+                                          )  # Connect search button to search function
             search_layout.addWidget(search_input)
             search_layout.addWidget(search_button)
             main_layout.addLayout(search_layout)
-            
+
             # Table
             table_headers = ["ID", "Judul", "Genre", "Tahun Terbit", "Penulis", "Rak", "Status"]
             buku_table = self.create_table(table_headers)  # Create the table
@@ -187,10 +211,10 @@ class LibraryApp(QWidget):
             FROM Buku b
             JOIN Menyimpan s ON b.ID_Buku = s.ID_Buku
             JOIN Rak r ON s.Kode_Rak = r.Kode_Rak
-            ORDER BY ID_Buku;         
+            ORDER BY ID_Buku;
             '''
             self.populate_table(buku_table, buku_query)
-        
+
         main_layout.addLayout(content_area)
 
         return main_screen
@@ -199,6 +223,7 @@ class LibraryApp(QWidget):
         peminjaman_screen = QWidget()
         peminjaman_layout = QVBoxLayout()
         peminjaman_screen.setLayout(peminjaman_layout)
+        peminjaman_screen.setStyleSheet("QWidget { background-color: #D1BB9E; }")
 
         # App Title
         title_groupbox = self.create_title_groupbox()
@@ -233,6 +258,7 @@ class LibraryApp(QWidget):
 
         # Hint message above search bar
         message_label = QLabel("Ketiklah Judul Buku, Nama Anggota, atau Tanggal Peminjaman Buku")
+        message_label.setFont(QFont('Helvetica', 12))
         message_label.setAlignment(Qt.AlignCenter)
         content_area.addWidget(message_label)
 
@@ -240,16 +266,25 @@ class LibraryApp(QWidget):
         search_layout = QHBoxLayout()
         search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
         search_input = QLineEdit()
+        search_input.setStyleSheet("background-color: #ffffff;")
         search_input.setFont(QFont('Helvetica', 12))
         search_button = QPushButton("Search")
+        search_button.setStyleSheet("""
+            QPushButton {
+                background-color: #FFFFFF;
+            }
+            QPushButton:hover {
+                background-color: #E0EEF9; /* Change to the accent color on hover */
+            }""")
         search_button.clicked.connect(lambda: self.search_peminjaman(search_input.text(), self.peminjaman_table))
         search_layout.addWidget(search_input)
         search_layout.addWidget(search_button)
         search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
         content_area.addLayout(search_layout)
 
-        #table
-        table_headers = ["ID Peminjaman", "ID Petugas", "Petugas", "ID Anggota", "Anggota", "ID Buku", "Judul", "Tanggal pinjam", "Tenggat"]
+        # table
+        table_headers = ["ID Peminjaman", "ID Petugas", "Petugas", "ID Anggota",
+                         "Anggota", "ID Buku", "Judul", "Tanggal pinjam", "Tenggat"]
         self.peminjaman_table = self.create_table(table_headers)  # Create the table and get its header
         self.peminjaman_table.setMaximumHeight(1500)
 
@@ -262,10 +297,10 @@ class LibraryApp(QWidget):
         JOIN Petugas p ON pem.ID_Petugas = p.ID_Petugas
         JOIN Anggota a ON pem.ID_Anggota = a.ID_Anggota
         JOIN Buku b ON pem.ID_Buku = b.ID_Buku
-        ORDER BY ID_Peminjaman;      
+        ORDER BY ID_Peminjaman;
         '''
         self.populate_table(self.peminjaman_table, peminjaman_query)
-        
+
         # Add and delete buttons (just placeholders, you need to implement their functionalities)
         buttons_layout = QHBoxLayout()
         buttons_layout.setAlignment(Qt.AlignBottom)
@@ -279,12 +314,33 @@ class LibraryApp(QWidget):
         buttons_layout.addSpacerItem(QSpacerItem(100, 50, QSizePolicy.Ignored, QSizePolicy.Fixed))
         content_area.addLayout(buttons_layout)
 
+        # Customize button appearance
+        buttons = [add_button, delete_button]
+        for button in buttons:
+            button.setStyleSheet(
+                """
+                QPushButton {
+                    background-color: #FFF2E1;
+                    border: 1px solid #808080;
+                    padding: 5px;
+                }
+                QPushButton:hover {
+                    background-color: #CCC1B4; /* Change to the accent color on hover */
+                }
+                QPushButton:pressed {
+                    background-color: #999087;
+                }
+                """
+            )
+            button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+
         return peminjaman_screen
 
     def Pengembalian_buku_screen(self):
         pengembalian_screen = QWidget()
         pengembalian_layout = QVBoxLayout()
         pengembalian_screen.setLayout(pengembalian_layout)
+        pengembalian_screen.setStyleSheet("QWidget { background-color: #D1BB9E; }")
 
         # App Title
         title_groupbox = self.create_title_groupbox()
@@ -319,6 +375,7 @@ class LibraryApp(QWidget):
 
         # Hint message above search bar
         message_label = QLabel("Ketiklah Judul Buku, Nama Anggota, atau Tanggal Pengembalian Buku")
+        message_label.setFont(QFont('Helvetica', 12))
         message_label.setAlignment(Qt.AlignCenter)
         content_area.addWidget(message_label)
 
@@ -326,16 +383,25 @@ class LibraryApp(QWidget):
         search_layout = QHBoxLayout()
         search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
         search_input = QLineEdit()
+        search_input.setStyleSheet("background-color: #ffffff;")
         search_input.setFont(QFont('Helvetica', 12))
         search_button = QPushButton("Search")
+        search_button.setStyleSheet("""
+            QPushButton {
+                background-color: #FFFFFF;
+            }
+            QPushButton:hover {
+                background-color: #E0EEF9; /* Change to the accent color on hover */
+            }""")
         search_button.clicked.connect(lambda: self.search_pengembalian(search_input.text(), self.pengembalian_table))
         search_layout.addWidget(search_input)
         search_layout.addWidget(search_button)
         search_layout.addSpacerItem(QSpacerItem(600, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
         content_area.addLayout(search_layout)
 
-        #table
-        table_headers = ["ID pengembalian", "ID Petugas", "Petugas", "ID Anggota", "Anggota", "ID Buku", "Judul", "Tanggal Kembali", "Denda"]
+        # table
+        table_headers = ["ID pengembalian", "ID Petugas", "Petugas", "ID Anggota",
+                         "Anggota", "ID Buku", "Judul", "Tanggal Kembali", "Denda"]
         self.pengembalian_table = self.create_table(table_headers)  # Create the table and get its header
         self.pengembalian_table.setMaximumHeight(1500)
 
@@ -348,10 +414,10 @@ class LibraryApp(QWidget):
         JOIN Petugas p ON peng.ID_Petugas = p.ID_Petugas
         JOIN Anggota a ON peng.ID_Anggota = a.ID_Anggota
         JOIN Buku b ON peng.ID_Buku = b.ID_Buku
-        ORDER BY ID_Pengembalian;     
+        ORDER BY ID_Pengembalian;
         '''
         self.populate_table(self.pengembalian_table, pengembalian_query)
-        
+
         # Add and delete buttons (just placeholders, you need to implement their functionalities)
         buttons_layout = QHBoxLayout()
         buttons_layout.setAlignment(Qt.AlignBottom)
@@ -364,6 +430,26 @@ class LibraryApp(QWidget):
         buttons_layout.addWidget(delete_button)
         buttons_layout.addSpacerItem(QSpacerItem(100, 50, QSizePolicy.Ignored, QSizePolicy.Fixed))
         content_area.addLayout(buttons_layout)
+
+        # Customize button appearance
+        buttons = [add_button, delete_button]
+        for button in buttons:
+            button.setStyleSheet(
+                """
+                QPushButton {
+                    background-color: #FFF2E1;
+                    border: 1px solid #808080;
+                    padding: 5px;
+                }
+                QPushButton:hover {
+                    background-color: #CCC1B4; /* Change to the accent color on hover */
+                }
+                QPushButton:pressed {
+                    background-color: #999087;
+                }
+                """
+            )
+            button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 
         return pengembalian_screen
 
@@ -393,7 +479,7 @@ class LibraryApp(QWidget):
         sidebar_layout = QVBoxLayout()
 
         # Set background color and border for the sidebar container
-        sidebar_container.setStyleSheet("background-color: #B4B4B8; border: 1px solid #808080; padding: 5px")
+        sidebar_container.setStyleSheet("background-color: #EAD8C0; border: 1px solid #808080; padding: 5px")
 
         # Assign the layout to the container widget
         sidebar_container.setLayout(sidebar_layout)
@@ -406,7 +492,7 @@ class LibraryApp(QWidget):
         sidebar_label.setStyleSheet("border: 1px;")
         sidebar_label.setAlignment(Qt.AlignCenter)
         sidebar_layout.addWidget(sidebar_label)
-        
+
         sidebar_layout.addSpacerItem(QSpacerItem(10, 20, QSizePolicy.Ignored, QSizePolicy.Fixed))
 
         # Create buttons for each sidebar item
@@ -417,10 +503,11 @@ class LibraryApp(QWidget):
         petugas_button = QPushButton('Petugas')
         rak_button = QPushButton('Rak')
         exit_button = QPushButton("Exit")
-        
+
         # Set font for all buttons at once
         side_button_font = QFont('Helvetica', 12)  # Adjust font family and size as desired
-        buttons = [pencarian_button, peminjaman_button, pengembalian_button, anggota_button, petugas_button, rak_button, exit_button]
+        buttons = [pencarian_button, peminjaman_button, pengembalian_button,
+                   anggota_button, petugas_button, rak_button, exit_button]
         for button in buttons:
             button.setFont(side_button_font)
 
@@ -434,20 +521,21 @@ class LibraryApp(QWidget):
         exit_button.clicked.connect(QApplication.quit)
 
         # Customize button appearance
-        buttons = [pencarian_button, peminjaman_button, pengembalian_button, anggota_button, petugas_button, rak_button, exit_button]
+        buttons = [pencarian_button, peminjaman_button, pengembalian_button,
+                   anggota_button, petugas_button, rak_button, exit_button]
         for button in buttons:
             button.setStyleSheet(
                 """
                 QPushButton {
-                    background-color: #FFFFFF;
+                    background-color: #FFF2E1;
                     border: 1px solid #808080;
                     padding: 5px;
                 }
                 QPushButton:hover {
-                    background-color: #B5C0D0; /* Change to the accent color on hover */
+                    background-color: #CCC1B4; /* Change to the accent color on hover */
                 }
-                QPushButton:pressed { 
-                    background-color: #566c8b; 
+                QPushButton:pressed {
+                    background-color: #999087;
                 }
                 """
             )
@@ -474,11 +562,21 @@ class LibraryApp(QWidget):
         table = QTableWidget()
         table.setColumnCount(len(column_headers))  # Set the number of columns in the table
         table.setHorizontalHeaderLabels(column_headers)  # Set column headers
+
+        # Set styles for the table header
+        header_style = """
+            QHeaderView::section {
+                background-color: #A79277;
+                font-weight: bold;
+            }
+        """
+        table.horizontalHeader().setStyleSheet(header_style)
+        table.verticalHeader().setStyleSheet(header_style)
+
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  # Set resize mode
         table.setEditTriggers(QAbstractItemView.NoEditTriggers)  # Make the table read-only
         return table  # Only return the table object
 
-    # Modify the populate_table method to accept a custom query
     def populate_table(self, table, query):
         cursor = self.db_connection.cursor()
 
@@ -499,6 +597,11 @@ class LibraryApp(QWidget):
             # Populate the cells in the row with data from the database
             for column_index, column_data in enumerate(row_data):
                 item = QTableWidgetItem(str(column_data))  # Convert the value to a string and create a QTableWidgetItem
+
+                # Set the background and foreground color for the item
+                item.setForeground(QColor("#000000"))
+                item.setBackground(QColor("#EAD8C0"))
+
                 table.setItem(row_index, column_index, item)  # Set the item in the table
 
     # Search Buku function
@@ -536,7 +639,7 @@ class LibraryApp(QWidget):
         JOIN Anggota a ON pem.ID_Anggota = a.ID_Anggota
         JOIN Buku b ON pem.ID_Buku = b.ID_Buku
         WHERE a.Nama_Anggota LIKE '%{query}%' OR b.Judul LIKE '%{query}%' OR pem.Tgl_Pinjam LIKE '%{query}%'
-        ORDER BY ID_Peminjaman;      
+        ORDER BY ID_Peminjaman;
         '''
         # Execute the search query
         cursor = self.db_connection.cursor()
@@ -575,7 +678,7 @@ class LibraryApp(QWidget):
         else:
             # Populate the table with search results
             self.populate_table(table, search_query)
-        
+
     def open_dialog(self, item, dialog_type):
         dialog = None
         if item == "add_button":
@@ -589,7 +692,7 @@ class LibraryApp(QWidget):
                 dialog = HapusPeminjamanDialog()
             elif dialog_type == "pengembalian":
                 dialog = HapusPengembalianDialog()
-        
+
         if dialog and dialog.exec_() == QDialog.Accepted:
             # Reconnect to the database
             self.db_connection = self.connect_to_database()
@@ -628,6 +731,7 @@ class LibraryApp(QWidget):
         exit_action = menu.addAction('Exit')
         exit_action.triggered.connect(self.close)
         menu.exec_(self.mapToGlobal(pos))
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
