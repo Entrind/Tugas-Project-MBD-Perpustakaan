@@ -16,6 +16,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QDate
 from datetime import datetime
 
+
 class BaseDialog(QDialog):
     def __init__(self):
         super().__init__()
@@ -38,40 +39,41 @@ class BaseDialog(QDialog):
         cursor.execute("SELECT COUNT(*) FROM Pengembalian WHERE ID_Buku = %s", (book_id,))
         return borrow_count > cursor.fetchone()[0]
 
+
 class TambahPeminjamanDialog(BaseDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Tambah Peminjaman")
         self.setMinimumSize(600, 300)
-        
+
         layout = QVBoxLayout(self)
-        
+
         # Label Input
         label_input = QLabel("Tambah Peminjaman")
         font = QFont("Helvetica", 15)
         font.setBold(True)
         label_input.setFont(font)
         layout.addWidget(label_input, alignment=Qt.AlignCenter)
-        
+
         # Separator Line
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         grid_layout = QGridLayout()
-        
+
         # Label
         labels = ["Nama Petugas", "Nama Anggota", "Judul Buku", "Tanggal Pinjam", "Tenggat Kembali"]
         for i, label_text in enumerate(labels):
             label = QLabel(label_text)
             label.setFont(QFont("Helvetica", 10))
             grid_layout.addWidget(label, i, 0, Qt.AlignLeft)
-            
+
             # Separator Kolon
             colon_label = QLabel(":")
             grid_layout.addWidget(colon_label, i, 1, Qt.AlignCenter)
-        
+
         # Inputan
         self.nama_petugas_entry = QLineEdit()
         self.nama_anggota_entry = QLineEdit()
@@ -81,20 +83,21 @@ class TambahPeminjamanDialog(BaseDialog):
         self.tanggal_pinjam_entry.setDate(QDate.currentDate())  # Set default date to current date
         self.tenggat_kembali_entry = QDateEdit()  # Change to QDateEdit
         self.tenggat_kembali_entry.setCalendarPopup(True)  # Enable calendar popup
-        self.tenggat_kembali_entry.setDate(QDate.currentDate())  # Set default date to current date 
-        
-        inputan = [self.nama_petugas_entry, self.nama_anggota_entry, self.judul_buku_entry, self.tanggal_pinjam_entry, self.tenggat_kembali_entry]
+        self.tenggat_kembali_entry.setDate(QDate.currentDate())  # Set default date to current date
+
+        inputan = [self.nama_petugas_entry, self.nama_anggota_entry,
+                   self.judul_buku_entry, self.tanggal_pinjam_entry, self.tenggat_kembali_entry]
         for i, input in enumerate(inputan):
             grid_layout.addWidget(input, i, 2)
-        
+
         layout.addLayout(grid_layout)
-        
+
         # Separator Line
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         # Submit Button
         tombol_submit = QPushButton("Submit")
         tombol_submit.setFont(QFont("Helvetica", 10))
@@ -159,14 +162,15 @@ class TambahPeminjamanDialog(BaseDialog):
         QMessageBox.information(self, "Success", "Data inserted successfully.")
         self.accept()  # Close the dialog
 
+
 class HapusPeminjamanDialog(BaseDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Hapus Peminjaman")
         self.setMinimumSize(600, 300)
-        
+
         layout = QVBoxLayout(self)
-        
+
         # Label Input
         label_input = QLabel("Hapus Peminjaman")
         font = QFont("Helvetica", 15)
@@ -183,20 +187,20 @@ class HapusPeminjamanDialog(BaseDialog):
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         grid_layout = QGridLayout()
-        
+
         # Label
         labels = ["ID Peminjaman", "Nama Anggota", "Judul Buku", "Tanggal Pinjam"]
         for i, label_text in enumerate(labels):
             label = QLabel(label_text)
             label.setFont(QFont("Helvetica", 10))
             grid_layout.addWidget(label, i, 0, Qt.AlignLeft)
-            
+
             # Separator Kolon
             colon_label = QLabel(":")
             grid_layout.addWidget(colon_label, i, 1, Qt.AlignCenter)
-        
+
         # Input
         self.id_peminjaman_entry = QLineEdit()
         self.nama_anggota_entry = QLineEdit()
@@ -204,19 +208,19 @@ class HapusPeminjamanDialog(BaseDialog):
         self.tanggal_pinjam_entry = QDateEdit()  # Change to QDateEdit
         self.tanggal_pinjam_entry.setCalendarPopup(True)  # Enable calendar popup
         self.tanggal_pinjam_entry.setDate(QDate.currentDate())  # Set default date to current date
-        
+
         inputan = [self.id_peminjaman_entry, self.nama_anggota_entry, self.judul_buku_entry, self.tanggal_pinjam_entry]
         for i, input in enumerate(inputan):
             grid_layout.addWidget(input, i, 2)
-        
+
         layout.addLayout(grid_layout)
-        
+
         # Separator Line
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         # Submit Button
         tombol_submit = QPushButton("Submit")
         tombol_submit.setFont(QFont("Helvetica", 10))
@@ -232,7 +236,8 @@ class HapusPeminjamanDialog(BaseDialog):
 
         # Validate input
         if not (id_peminjaman or (nama_anggota and judul_buku and tanggal_pinjam)):
-            QMessageBox.warning(self, "Error", "Please fill either the ID Peminjaman or provide Nama Anggota, Judul Buku, and Tanggal Pinjam.")
+            QMessageBox.warning(
+                self, "Error", "Please fill either the ID Peminjaman or provide Nama Anggota, Judul Buku, and Tanggal Pinjam.")
             return
 
         # Check if the entry exists
@@ -243,7 +248,7 @@ class HapusPeminjamanDialog(BaseDialog):
         else:
             query = "SELECT ID_Buku FROM Peminjaman WHERE ID_Anggota = (SELECT ID_Anggota FROM Anggota WHERE Nama_Anggota = %s) AND ID_Buku = (SELECT ID_Buku FROM Buku WHERE Judul = %s) AND Tgl_Pinjam = %s"
             data = (nama_anggota, judul_buku, tanggal_pinjam)
-        
+
         cursor.execute(query, data)
         result = cursor.fetchone()
         if not result:
@@ -275,60 +280,61 @@ class HapusPeminjamanDialog(BaseDialog):
         QMessageBox.information(self, "Success", "Data deleted successfully.")
         self.accept()  # Close the dialog
 
+
 class TambahPengembalianDialog(BaseDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Tambah Pengembalian")
         self.setMinimumSize(600, 300)
-        
+
         layout = QVBoxLayout(self)
-        
+
         # Label Input
         label_input = QLabel("Tambah Pengembalian")
         font = QFont("Helvetica", 15)
         font.setBold(True)
         label_input.setFont(font)
         layout.addWidget(label_input, alignment=Qt.AlignCenter)
-        
+
         # Separator Line
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         grid_layout = QGridLayout()
-        
+
         # Label
         labels = ["Nama Petugas", "Nama Anggota", "Judul Buku", "Tanggal Pengembalian"]
         for i, label_text in enumerate(labels):
             label = QLabel(label_text)
             label.setFont(QFont("Helvetica", 10))
             grid_layout.addWidget(label, i, 0, Qt.AlignLeft)
-            
+
             # Separator Kolon
             colon_label = QLabel(":")
             grid_layout.addWidget(colon_label, i, 1, Qt.AlignCenter)
-        
+
         # Inputan
         self.nama_petugas_entry = QLineEdit()
         self.nama_anggota_entry = QLineEdit()
         self.judul_buku_entry = QLineEdit()
         self.tanggal_pengembalian_entry = QDateEdit()  # Change to QDateEdit
         self.tanggal_pengembalian_entry.setCalendarPopup(True)  # Enable calendar popup
-        self.tanggal_pengembalian_entry.setDate(QDate.currentDate())  # Set default date to current date        
-        
+        self.tanggal_pengembalian_entry.setDate(QDate.currentDate())  # Set default date to current date
+
         inputan = [self.nama_petugas_entry, self.nama_anggota_entry, self.judul_buku_entry, self.tanggal_pengembalian_entry]
         for i, input in enumerate(inputan):
             grid_layout.addWidget(input, i, 2)
-        
+
         layout.addLayout(grid_layout)
-        
+
         # Separator Line
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         # Submit Button
         tombol_submit = QPushButton("Submit")
         tombol_submit.setFont(QFont("Helvetica", 10))
@@ -416,14 +422,15 @@ class TambahPengembalianDialog(BaseDialog):
         self.conn.close()
         event.accept()
 
+
 class HapusPengembalianDialog(BaseDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Hapus Pengembalian")
         self.setMinimumSize(600, 300)
-        
+
         layout = QVBoxLayout(self)
-        
+
         # Label Input
         label_input = QLabel("Hapus Pengembalian")
         font = QFont("Helvetica", 15)
@@ -440,20 +447,20 @@ class HapusPengembalianDialog(BaseDialog):
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         grid_layout = QGridLayout()
-        
+
         # Label
         labels = ["ID Pengembalian", "Nama Anggota", "Judul Buku", "Tanggal Pengembalian"]
         for i, label_text in enumerate(labels):
             label = QLabel(label_text)
             label.setFont(QFont("Helvetica", 10))
             grid_layout.addWidget(label, i, 0, Qt.AlignLeft)
-            
+
             # Separator Kolon
             colon_label = QLabel(":")
             grid_layout.addWidget(colon_label, i, 1, Qt.AlignCenter)
-        
+
         # Inputan
         self.id_pengembalian_entry = QLineEdit()
         self.nama_anggota_entry = QLineEdit()
@@ -461,19 +468,19 @@ class HapusPengembalianDialog(BaseDialog):
         self.tanggal_pengembalian_entry = QDateEdit()  # Change to QDateEdit
         self.tanggal_pengembalian_entry.setCalendarPopup(True)  # Enable calendar popup
         self.tanggal_pengembalian_entry.setDate(QDate.currentDate())  # Set default date to current date
-        
+
         inputan = [self.id_pengembalian_entry, self.nama_anggota_entry, self.judul_buku_entry, self.tanggal_pengembalian_entry]
         for i, input in enumerate(inputan):
             grid_layout.addWidget(input, i, 2)
-        
+
         layout.addLayout(grid_layout)
-        
+
         # Separator Line
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout.addWidget(separator)
-        
+
         # Submit Button
         tombol_submit = QPushButton("Submit")
         tombol_submit.setFont(QFont("Helvetica", 10))
@@ -489,7 +496,8 @@ class HapusPengembalianDialog(BaseDialog):
 
         # Validate input
         if not (id_pengembalian or (nama_anggota and judul_buku and tanggal_pengembalian)):
-            QMessageBox.warning(self, "Error", "Please fill either the ID Pengembalian or provide Nama Anggota, Judul Buku, and Tanggal Pengembalian.")
+            QMessageBox.warning(
+                self, "Error", "Please fill either the ID Pengembalian or provide Nama Anggota, Judul Buku, and Tanggal Pengembalian.")
             return
 
         # Check if the entry exists
@@ -500,7 +508,7 @@ class HapusPengembalianDialog(BaseDialog):
         else:
             query = "SELECT ID_Buku FROM Pengembalian WHERE ID_Anggota = (SELECT ID_Anggota FROM Anggota WHERE Nama_Anggota = %s) AND ID_Buku = (SELECT ID_Buku FROM Buku WHERE Judul = %s) AND Tgl_Pengembalian = %s"
             data = (nama_anggota, judul_buku, tanggal_pengembalian)
-        
+
         cursor.execute(query, data)
         result = cursor.fetchone()
         if not result:
@@ -531,6 +539,7 @@ class HapusPengembalianDialog(BaseDialog):
 
         QMessageBox.information(self, "Success", "Data deleted successfully.")
         self.accept()  # Close the dialog
+
 
 if __name__ == "__main__":
     app = QApplication([])
