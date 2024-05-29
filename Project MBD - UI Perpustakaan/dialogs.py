@@ -1,17 +1,5 @@
 import mysql.connector
-from PyQt5.QtWidgets import (
-    QApplication,
-    QDialog,
-    QVBoxLayout,
-    QLabel,
-    QFrame,
-    QSizePolicy,
-    QGridLayout,
-    QLineEdit,
-    QDateEdit,
-    QPushButton,
-    QMessageBox,
-)
+from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QDate
 from datetime import datetime
