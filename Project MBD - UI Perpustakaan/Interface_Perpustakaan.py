@@ -17,7 +17,7 @@ class LibraryApp(QWidget):
             connection = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
-                password="anD1ka02_r4hman",
+                password="",
                 database="Perpustakaan"
             )
             return connection
